@@ -1,14 +1,16 @@
-document.addEventListener('click', boxListener);
 
 let boxStack = [];
 let boxInterval;
+const sizeOfGrid = document.getElementsByClassName("box").length;
+console.log(sizeOfGrid);
+
 
 function boxListener(event) {
     if (!event.target.classList.contains("box")) return;
     if(boxStack.includes(event.target)) return;
     boxStack.push(event.target);
     event.target.classList.add("clicked");
-    if(boxStack.length >= 9) {
+    if(boxStack.length >= sizeOfGrid) {
             boxInterval = setInterval( () => {
                     boxStack[0].classList.remove("clicked");
                     boxStack.shift(); 
@@ -17,6 +19,7 @@ function boxListener(event) {
     }
 }
 
+document.addEventListener('click', boxListener);
 
 
 
